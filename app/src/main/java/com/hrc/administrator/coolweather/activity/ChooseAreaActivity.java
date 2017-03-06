@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hrc.administrator.coolweather.R;
+import com.hrc.administrator.coolweather.adapter.ListAdapter;
 import com.hrc.administrator.coolweather.db.CoolWeatherDB;
 import com.hrc.administrator.coolweather.model.City;
 import com.hrc.administrator.coolweather.model.County;
@@ -39,7 +40,7 @@ public class ChooseAreaActivity extends Activity{
     private ProgressDialog progressDialog;
     private TextView titleText;
     private ListView listView;
-    private ArrayAdapter<String> adapter;
+    private ListAdapter adapter;
     private CoolWeatherDB coolWeatherDB;
     private List<String> dataList=new ArrayList<String>();
     /**
@@ -86,7 +87,7 @@ public class ChooseAreaActivity extends Activity{
         setContentView(R.layout.choose_area);
         listView= (ListView) findViewById(R.id.list_view);
         titleText= (TextView) findViewById(R.id.title_text);
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dataList);
+        adapter=new ListAdapter(this,R.layout.item_layout,dataList);
         listView.setAdapter(adapter);
         coolWeatherDB=coolWeatherDB.getInstance(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
