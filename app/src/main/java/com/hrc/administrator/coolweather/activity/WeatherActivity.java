@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hrc.administrator.coolweather.R;
+import com.hrc.administrator.coolweather.service.AutoUpdateService;
 import com.hrc.administrator.coolweather.util.HttpCallbackListener;
 import com.hrc.administrator.coolweather.util.HttpUtil;
 import com.hrc.administrator.coolweather.util.Utility;
@@ -98,6 +99,8 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
         currentDateText.setText(prefs.getString("current_date",""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNametext.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     /**
@@ -151,7 +154,7 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
      * @param weatherCode 天气代号
      */
     private void queryWeatherInfo(String weatherCode) {
-        String address="http://www.weather.com.cn/data/cityinfo/"+weatherCode+".xml";
+        String address="http://www.weather.com.cn/data/cityinfo/"+weatherCode+".html";
         queryFromServer(address,"weatherCode");
     }
 
